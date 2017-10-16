@@ -1,0 +1,235 @@
+# 2048
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand(time(0));
+	char key;
+	int A[4][4] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	for (int i = 0; i < 6; i++)
+	{
+		int a = rand() % 16;
+		if (A[a / 4][a % 4] == 0)
+			A[a / 4][a % 4] = 2;
+	}
+
+	do
+	{
+		for (;;)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				cout << A[i][0] << ' ' << A[i][1] << ' ' << A[i][2] << ' ' <<A[i][3] << endl;
+			}
+			cin >> key;
+
+			if (key == 'j')
+			{
+				for (int i = 2; i >= 0; i--)
+				{
+					for (int k = 0; k < 4; k++)
+					{
+						if (A[i][k] != 0)
+						{
+							if (A[3][k] == 0)
+							{
+								A[3][k] = A[i][k];
+								A[i][k] = 0;
+							}
+
+							else if (A[3][k] == A[i][k])
+							{
+								A[3][k] += A[i][k];
+								A[i][k] = 0;
+							}
+
+							else if ((A[3][k] != A[i][k]) && (A[2][k] == A[i][k]) && (i != 2))
+							{
+								A[2][k] += A[i][k];
+								A[i][k] = 0;
+							}
+
+							else if ((A[3][k] != A[i][k]) && (A[2][k] == 0))
+							{
+								A[2][k] = A[i][k];
+								A[i][k] = 0;
+							}
+
+							else if ((A[3][k] != A[i][k]) && (A[2][k] != A[i][k]) && (A[1][k] == A[i][k]) && (i != 1))
+							{
+								A[1][k] += A[i][k];
+								A[i][k] = 0;
+							}
+
+							else if ((A[3][k] != A[i][k]) && (A[2][k] != A[i][k]) && (A[1][k] == 0))
+							{
+								A[1][k] += A[i][k];
+								A[i][k] = 0;
+							}
+						}
+					}
+				}
+
+				break;
+			}
+			if (key == 'k')
+			{
+				for (int i = 1; i <= 3; i++) 
+				{
+					for (int k = 0; k < 4; k++) 
+					{
+						if (A[i][k] != 0) 
+						{
+							if (A[0][k] == 0) 
+							{ 
+								A[0][k] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if (A[0][k] == A[i][k]) 
+							{ 
+								A[0][k] += A[i][k];
+								A[i][k] = 0; 
+							}
+
+							else if ((A[0][k] != A[i][k]) && (A[1][k] == A[i][k]) && (i != 1)) 
+							{ 
+								A[1][k] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[0][k] != A[i][k]) && (A[1][k] == 0)) 
+							{ 
+								A[1][k] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[0][k] != A[i][k]) && (A[1][k] != A[i][k]) && (A[1][k] == A[i][k]) && (i != 2)) 
+							{
+								A[2][k] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[0][k] != A[i][k]) && (A[1][k] != A[i][k]) && (A[1][k] == 0)) 
+							{ 
+								A[2][k] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+						}
+					}
+				}
+			break;
+			}
+			if (key == 'h')
+			{
+				for (int k = 1; k <= 3; k++) 
+				{
+					for (int i = 0; i < 4; i++) 
+					{
+						if (A[i][k] != 0) 
+						{
+							if (A[i][0] == 0) 
+							{
+								A[i][0] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if (A[i][0] == A[i][k]) 
+							{
+								A[i][0] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][0] != A[i][k]) && (A[i][1] == A[i][k]) && (k != 1)) 
+							{
+								A[i][1] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][0] != A[i][k]) && (A[i][1] == 0)) 
+							{
+								A[i][1] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][0] != A[i][k]) && (A[i][1] != A[i][k]) && (A[i][1] == A[i][k]) && (k != 2)) 
+							{
+								A[i][2] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][0] != A[i][k]) && (A[i][1] != A[i][k]) && (A[i][1] == 0))
+							{
+								A[i][2] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+						}
+					}
+				}
+
+				break;
+			}
+
+			if (key == 'l')
+			{
+				for (int k = 2; k >= 0; k--) 
+				{
+					for (int i = 0; i < 4; i++) 
+					{
+						if (A[i][k] != 0) 
+						{
+							if (A[i][3] == 0) 
+							{
+								A[i][3] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if (A[i][3] == A[i][k]) 
+							{
+								A[i][3] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][3] != A[i][k]) && (A[i][2] == A[i][k]) && (k != 2)) 
+							{
+								A[i][2] += A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][3] != A[i][k]) && (A[i][2] == 0)) 
+							{ 
+								A[i][2] = A[i][k]; 
+								A[i][k] = 0; 
+							}
+
+							else if ((A[i][3] != A[i][k]) && (A[i][2] != A[i][k]) && (A[i][1] == A[i][k]) && (k != 1)) 
+							{
+								A[i][1] += A[i][k]; 
+								A[i][k] = 0;
+							}
+
+							else if ((A[i][3] != A[i][k]) && (A[i][2] != A[i][k]) && (A[i][1] == 0)) 
+							{
+								A[i][1] += A[i][k]; 
+								A[i][k] = 0;
+							}
+						}
+					}
+				}
+
+			}
+
+		}
+	}
+
+		while (key != 'q');
+		if (key == 'q');
+		exit(0);
+
+		return 0;
+}
