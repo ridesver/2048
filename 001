@@ -7,10 +7,10 @@ using namespace std;
 
 int main()
 {
-	srand(time(0));
-	char key;
 	int A[4][4] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
+	char key;
+        srand(time(0));
+	
 	for (int i = 0; i <= 5; i++)
 	{
 		int a = rand() % 32;
